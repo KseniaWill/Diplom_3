@@ -1,4 +1,4 @@
-TIME_WAIT = 10
+TIME_WAIT = 13
 
 
 class Urls:

@@ -1,16 +1,22 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from locators.login_page_locators import LoginPageLocators as LL
-
-from data import Urls, UserData, TIME_WAIT
+from data import Urls
 
 
-@pytest.fixture(scope='function')
-def driver():
-    driver = webdriver.Firefox()
+# @pytest.fixture(scope='function')
+# def driver():
+#     driver = webdriver.Firefox()
+#     driver = webdriver.Chrome()
+#     driver.get(Urls.main_page)
+#
+#     yield driver
+#     driver.quit()
+@pytest.fixture(params=['firefox', 'chrome'])
+def driver(request):
+    if request.param == 'firefox':
+        driver = webdriver.Firefox()
+    elif request.param == 'chrome':
+        driver = webdriver.Chrome()
     driver.get(Urls.main_page)
 
     yield driver
